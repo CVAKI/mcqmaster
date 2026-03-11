@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D0D1A">
+
+    <!-- Full-screen answer color background (fades in) -->
+    <View
+        android:id="@+id/fullColorBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <!-- Photo thumbnail (top left corner) -->
+    <ImageView
+        android:id="@+id/ivPhoto"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="top|start"
+        android:layout_margin="60dp"
+        android:scaleType="centerCrop"
+        android:background="#222233"
+        android:elevation="4dp"
+        android:contentDescription="Captured photo"/>
+
+    <!-- Top bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#BB000000"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="← Back"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#44FFFFFF"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+        <TextView
+            android:id="@+id/tvKeyInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Gemini Key #1  AIza..."
+            android:textColor="#44FF88"
+            android:textSize="11sp"
+            android:gravity="center"
+            android:ellipsize="middle"
+            android:singleLine="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MCQ Master"
+            android:textColor="#888888"
+            android:textSize="11sp"/>
+    </LinearLayout>
+
+    <!-- ANALYZING state -->
+    <LinearLayout
+        android:id="@+id/analyzingContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="60dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:indeterminateTint="#44FF88"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tvAnalyzing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔍 Analyzing MCQ..."
+            android:textColor="#CCCCCC"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <!-- MCQ RESULT card (hidden until answer found) -->
+    <LinearLayout
+        android:id="@+id/resultContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp"
+        android:visibility="gone">
+
+        <!-- Big Answer Letter -->
+        <TextView
+            android:id="@+id/tvAnswerLetter"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:text="A"
+            android:textSize="72sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="@drawable/circle_solid"
+            android:elevation="8dp"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Question text -->
+        <TextView
+            android:id="@+id/tvQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Question text here..."
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:background="#BB000000"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:maxLines="4"/>
+
+        <!-- Correct option text -->
+        <TextView
+            android:id="@+id/tvOptionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Option text here..."
+            android:textColor="#FFFF88"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:background="#AA000000"
+            android:padding="12dp"
+            android:maxLines="3"/>
+    </LinearLayout>
+
+    <!-- No MCQ found message -->
+    <TextView
+        android:id="@+id/tvNoMcq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="No MCQ detected in this image"
+        android:textColor="#AAAAAA"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:padding="32dp"
+        android:visibility="gone"/>
+
+    <!-- Bottom bar: countdown + next button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="#CC000000"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvCountdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next capture in 12s"
+            android:textColor="#888888"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/btnNextCapture"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#1A5533"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📷  CAPTURE NEXT"
+                android:textColor="#44FF88"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

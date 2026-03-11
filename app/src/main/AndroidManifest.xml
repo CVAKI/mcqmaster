@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Write to gallery: required on API 26-28 only (API 29+ uses MediaStore, no perm needed) -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"
+        tools:ignore="ScopedStorage" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.McqMaster"
+        android:usesCleartextTraffic="false">
+
+        <!-- ① Gemini Key Setup (LAUNCHER) -->
+        <activity
+            android:name=".GeminiIntegrationActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- ② Photo Capture with 10s countdown -->
+        <activity
+            android:name=".PhotoCaptureActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- ③ MCQ Analysis + colored answer display -->
+        <activity
+            android:name=".AnalysisActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- Keep MainActivity registered (not used as launcher anymore) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+    </application>
+</manifest>

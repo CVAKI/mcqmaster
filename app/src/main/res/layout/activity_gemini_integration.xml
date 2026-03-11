@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D0D1A"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- TITLE -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🧠 MCQ Master"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#44FF88"
+            android:gravity="center"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Multi-Provider AI Integration"
+            android:textSize="13sp"
+            android:textColor="#888888"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- PROVIDER TABS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnTabGemini"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:text="Gemini"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#1565C0"
+                android:layout_marginEnd="4dp"/>
+
+            <Button
+                android:id="@+id/btnTabGroq"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:text="Groq"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#2A2A3A"
+                android:layout_marginEnd="4dp"/>
+
+            <Button
+                android:id="@+id/btnTabOr"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:text="OpenRouter"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#2A2A3A"/>
+        </LinearLayout>
+
+        <!-- STATUS CARD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#1A1A2E"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvKeyCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gemini  |  0 keys"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvActiveKey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Active: — (no keys)"
+                    android:textColor="#44FF88"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvRotateTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Auto-rotate in 2:00"
+                    android:textColor="#FFAA44"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnForceRotate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ROTATE"
+                android:textSize="11sp"
+                android:backgroundTint="#334455"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+        <!-- OPENROUTER MODEL SELECTOR (hidden unless OR tab active) -->
+        <LinearLayout
+            android:id="@+id/layoutOrModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#111A11"
+            android:padding="14dp"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OpenRouter Model ID"
+                android:textColor="#44FF88"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Browse models at openrouter.ai/models — pick any vision-capable model"
+                android:textColor="#666688"
+                android:textSize="11sp"
+                android:layout_marginBottom="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etOrModel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="google/gemini-2.0-flash-lite"
+                    android:textColorHint="#445566"
+                    android:textColor="#FFFFFF"
+                    android:background="#1A2233"
+                    android:padding="10dp"
+                    android:textSize="12sp"
+                    android:inputType="textNoSuggestions"/>
+
+                <Button
+                    android:id="@+id/btnSaveOrModel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SAVE"
+                    android:textSize="11sp"
+                    android:backgroundTint="#1A5533"
+                    android:textColor="#44FF88"
+                    android:layout_marginStart="8dp"/>
+            </LinearLayout>
+
+            <!-- Popular models hint -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Popular: google/gemini-2.0-flash-lite  |  meta-llama/llama-4-maverick  |  anthropic/claude-3.5-haiku"
+                android:textColor="#445566"
+                android:textSize="10sp"
+                android:layout_marginTop="6dp"/>
+        </LinearLayout>
+
+        <!-- ADD KEY SECTION -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD API KEY"
+            android:textColor="#888888"
+            android:textSize="11sp"
+            android:letterSpacing="0.15"
+            android:layout_marginBottom="6dp"/>
+
+        <!-- Key source hints per provider -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gemini: aistudio.google.com/apikey  |  Groq: console.groq.com/keys  |  OpenRouter: openrouter.ai/keys"
+            android:textColor="#445566"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/etNewKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Paste API key here..."
+            android:textColorHint="#445566"
+            android:textColor="#FFFFFF"
+            android:background="#1A2233"
+            android:padding="14dp"
+            android:inputType="textNoSuggestions"
+            android:textSize="13sp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/btnAddKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ADD KEY"
+                android:backgroundTint="#1A5533"
+                android:textColor="#44FF88"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/btnClearAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CLEAR ALL"
+                android:backgroundTint="#551111"
+                android:textColor="#FF8888"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <!-- SAVED KEYS LIST -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAVED KEYS"
+            android:textColor="#888888"
+            android:textSize="11sp"
+            android:letterSpacing="0.15"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:id="@+id/keysContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#111122"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- HOW IT WORKS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#111A11"
+            android:padding="14dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HOW TO USE"
+                android:textColor="#44FF88"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. Pick a provider tab (Gemini / Groq / OpenRouter)\n2. Add your API key(s) for that provider\n3. For OpenRouter, set your chosen model ID\n4. Tap START CAMERA — the selected provider is used\n5. Camera auto-captures every 10 s and shows the MCQ answer\n\nGroq is fastest (LPU hardware). OpenRouter gives access to 100+ models. Gemini has the best free quota reset policy."
+                android:textColor="#AAAAAA"
+                android:textSize="12sp"
+                android:lineSpacingMultiplier="1.5"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="START CAMERA"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:backgroundTint="#44FF88"
+            android:textColor="#000000"
+            android:layout_marginBottom="32dp"/>
+
+    </LinearLayout>
+</ScrollView>

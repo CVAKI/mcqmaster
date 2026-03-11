@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Reduced padding from 150dp to 24dp for larger logo -->
+    <item
+        android:drawable="@drawable/logo"
+        android:top="13dp"
+        android:bottom="13dp"
+        android:left="13dp"
+        android:right="13dp"/>
+</layer-list>
